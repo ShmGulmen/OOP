@@ -1,3 +1,4 @@
+package org.app;
 class App {
 	public static void main(String [] args)
 	{
@@ -10,6 +11,7 @@ class App {
 		System.out.printf("Radius:%f%n", c.getRadius());
 	}
 }
+package org.app.circle;
 
 public class Circle {
 	private double m_r;
