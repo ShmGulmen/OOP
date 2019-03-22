@@ -1,3 +1,20 @@
+class App {
+	public static void main(String [] args)
+	{
+		ExamSimulation examSimulation = new ExamSimulation("Matematik");
+
+		examSimulation.run();
+
+		System.out.println("All Notes:");
+		display(examSimulation.grades, 3);
+
+		System.out.println("Branch averages:");
+		display(examSimulation.averages, 2);
+
+		System.out.printf("School averages:%f%n", examSimulation.average);
+	}
+}
+
 public class ExamSimulation {
 	public java.util.Scanner kb;    //klavye nesnesi
 	public String lectureName;      //ders adı tutatcak değişken
