@@ -1,0 +1,44 @@
+public class Point {
+	public int x, y;
+	
+	public Point()
+	{}
+	public Point(int a, int b)
+	{
+		x = a;
+		y = b;
+	}
+	public Point(int a)
+	{
+		x = a;
+	}
+	public static double distance(int x1, int y1, int x2, int y2)
+	{
+		return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+	}
+	public double distance(int x1)
+	{
+		return distance(x1, 0, x, y);
+	}
+	public double distance(int x1, int y1)
+	{
+		return distance(x1, y1, x, y);
+	}
+	public double distance(Point p)
+	{
+		return distance(x, y, p.x, p.y);
+	}
+	public void offset(int dx, int dy)
+	{
+		x += dx;
+		y += dy;
+	}
+	public void offset(int dxy)
+	{
+		offset(dxy, dxy);
+	}
+	public String toString()
+	{
+		return String.format("(%d, %d)", x, y);
+	}
+}
