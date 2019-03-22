@@ -1,3 +1,5 @@
+package org.app;
+
 class App {
 	public static void main(String [] args)
 	{
@@ -14,6 +16,7 @@ class App {
 		System.out.printf("School averages:%f%n", examSimulation.average);
 	}
 }
+package org.app.exam;
 
 public class ExamSimulation {
 	public java.util.Scanner kb;    //klavye nesnesi
