@@ -1,0 +1,122 @@
+import java.util.Calendar;
+
+public class Time {
+	private int m_hour, m_minute, m_second, m_millisecond;
+	//CTOR
+	public Time(int hour, int minute, int second, int millisecond)
+	{
+		control(hour, minute, second, millisecond);
+		m_hour = hour;
+		m_minute = minute;
+		m_second = second;
+		m_millisecond = millisecond;
+	}
+	//CTOR'DA kontrol işlemi için yazılan toplu kontrol metod
+	private static void control(int hour, int min, int sec, int milsec)
+	{
+		if (!isValidForArguments(hour, min, sec, milsec))
+			doWorkForException("Invalid Time");
+	}
+	private static boolean isValidForArguments(int hour, int min, int sec, int milsec)
+	{
+		return isValidForBounds(hour, 0, 23) && isValidForBounds(min, 0, 59) && 
+				isValidForBounds(sec, 0, 59) && isValidForBounds(milsec, 0, 990);
+	}
+	//Hata mesajı veren metod
+	private static void doWorkForException(String message)
+	{
+		System.out.println(message);
+		System.exit(-1);
+	}
+	//Herbir eleman için tek tek yapılan kontol metodu için gerekli 2 metod
+	private static void controlForBounds(String msg, int val, int min, int max)
+	{
+		if (!isValidForBounds(val, min, max))
+			doWorkForException(msg);
+	}
+	private static boolean isValidForBounds(int val, int min, int max)
+	{
+		return val >= min && val <= max;
+	}
+	//SET ve GET metodları için yapılacak kontrol metodları
+	private static void	 controlForHour(int hour)
+	{
+		controlForBounds("Invalid Hour ",hour, 0, 23);
+	}
+	private static void controlForMinute(int minute)
+	{
+		controlForBounds("Invalid Minute", minute, 0, 59);
+	}
+	private static void controlForSecond(int second)
+	{
+		controlForBounds("Invalid Second", second, 0, 59);
+	}
+	private static void controlForMillisecond(int millisecond)
+	{
+		controlForBounds("Invalid milliSecond", millisecond, 0, 990);
+	}
+	
+	//SET ve GET metodlar
+	public void setHour(int hour)
+	{
+		if (m_hour == hour)
+			return;
+		controlForHour(hour);
+		m_hour = hour;
+	}
+	public int getHour()
+	{ return m_hour;}
+	
+	public void setMinute(int min)
+	{
+		if(m_minute == min)
+			return;
+		controlForMinute(min);
+		m_minute = min;
+	}
+	public int getMinute()
+	{ return m_minute;}
+	
+	public void setSecond(int sec)
+	{
+		if (m_second == sec)
+			return;
+		controlForSecond(sec);
+		m_second= sec;
+	}
+	public int getSecond()
+	{ return m_second;}
+	
+	public void setMillisecond(int milsec)
+	{
+		if (m_millisecond == milsec)
+			return;
+		controlForMillisecond(milsec);
+		m_millisecond = milsec;
+	}
+	
+	public String toShortTimeString()
+	{
+		return String.format("%02d:%02d", m_hour, m_minute);
+	}
+	public String toString()
+	{
+		return String.format("%s:%02d", toShortTimeString(), m_second);
+	}
+	public String toLongTimeString()
+	{
+		return String.format("%s:%02d", toString(), m_millisecond);
+	}
+	
+	//Çalışılan Bilgisayardan o anki Saati alan kod:Java 5 'ten önce
+	public Time()
+	{
+		Calendar now = Calendar.getInstance();
+		
+		m_hour = now.get(Calendar.HOUR_OF_DAY);
+		m_minute = now.get(Calendar.MINUTE);
+		m_second = now.get(Calendar.SECOND);
+		m_millisecond = now.get(Calendar.MILLISECOND);
+	}
+	
+}
