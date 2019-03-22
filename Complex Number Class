@@ -1,3 +1,20 @@
+class App {
+	public static void main(String [] args)
+	{
+		Complex z1 = new Complex(3, 4);
+		Complex z2 = new Complex(-6.7, 4.5);
+		Complex z;
+		
+		z = z1.add(z2);
+		
+		System.out.println(z.toString());
+		
+		z = z1.add(-6.7, 4.5);
+		
+		System.out.println(z.toString());
+	}
+}
+
 public class Complex {
 	
 	public double re, im;
