@@ -1,0 +1,29 @@
+public class Lottary {
+	public java.util.Random random;
+	
+	public Lottary()
+	{
+		random = new java.util.Random();
+	}
+	
+	public int[] getColumn()
+	{
+		int [] column = new int[6];
+		boolean [] status = new boolean[50];
+		int val;
+		
+		for (int i = 0; i < 6; ++i) {
+			for(;;) {
+				val = random.nextInt(49) + 1;
+					if (!status[val])
+						break;
+			}
+			status[val] = true;
+		}
+			int index = 0;
+			for (int i= 1; i < 50; ++i)
+				if (status[i])
+					column[index++] = i;
+			return column;
+	}
+}
