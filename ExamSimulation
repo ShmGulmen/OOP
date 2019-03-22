@@ -1,0 +1,68 @@
+public class ExamSimulation {
+	public java.util.Scanner kb;    //klavye nesnesi
+	public String lectureName;      //ders adı tutatcak değişken
+	public int [][] grades;         //okulun notlarının tutulacağı dizi
+	public double[] averages;     	//şube ortalamalarının tutulacağı dizi
+	public double average;          //okulun ortalamasını tutacak değişken
+	
+	public ExamSimulation(String name) //Ders bilgisi hazır gelsin istiyorum o yüzden ctora yazıyorum.
+	{
+		kb = new java.util.Scanner(System.in);
+		lectureName = name;
+	}
+	public void getInformation() //Şube sayısını alıyorum.
+	{
+		System.out.print("Enter the number of branches");
+		int n = Integer.parseInt(kb.nextLine());
+		
+		grades = new int[n][];
+	}
+	public void fillGrades() //Şubelerin içini dolduruyorum
+	{
+		for (int i = 0; i < grades.length; ++i) {
+			System.out.printf("Number of students in branch %d", i + 1);
+				grades [i] = getRandomArray(Integer.parseInt(kb.nextLine()), 0, 101); /*getRandomArrayın içinde n değeri ile öğr.sayısını
+				 																			                                  max min ile aldıkları notları dolduruyoruz*/
+		}
+	}
+	public static int[] getRandomArray(java.util.Random r, int n, int min, int max)
+	{	
+		int [] a = new int [n];
+		for (int i = 0; i < a.length; ++i)
+			a [i] = r.nextInt(max - min) + min;
+		
+		return a;
+	}
+	public static int [] getRandomArray(int n, int min, int max)
+	{
+		return getRandomArray(new java.util.Random(), n, min, max);
+	}
+	public static int [] getRandomArray(int n, int max)
+	{
+		return getRandomArray(n, 0, max);
+	}
+	public void calculateAverages()
+	{
+		int total = 0;
+		int numberOfStudent = 0;
+		
+		averages = new double[grades.length]; // şube ortalamaları için dizinin eleman sayısına n değerini yani şube sayısını veriyorum.
+		
+		for (int i = 0; i < grades.length; ++i){ // kaç şube olduğunu alıyorum,0.şubede şuan toplam not sıfır.
+			int sum = 0;						               //.0 şubede ki not toplamı aşağıda bulundu ilk sum bulundu.1.şubeyi bulurken sum yine sıfır olur.
+			for(int k = 0; k < grades[i].length; ++k) //her şubedeki notu alıyorum. 
+				sum += grades[i][k];                  // sum 'a ekliyorum. not dizi dizleri sum'a ekleniyor.
+			
+			total += sum;                             // sum da bulunan her şubenin toplam notunu totala ekliyorum.
+			averages[i] = (double) sum / grades[i].length;//şube ort için,her şubede bulunan toplam notu şube sayısına yani dizinin uzunluğuna bölüyorum.
+			numberOfStudent += grades [i].length;	      //toplam öğr. sayısı her şubedeki toplam uzunluk old. için tek tek ekliyorum.		
+		}
+		average = (double)total / numberOfStudent;        //toplam not sayısını, toplam öğr sayısına bölüyorum.
+	}
+	public void run()
+	{
+		getInformation();
+		fillGrades();
+		calculateAverages();
+	}
+}
