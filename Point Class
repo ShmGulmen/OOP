@@ -1,3 +1,4 @@
+package org.app;
 class App {
 	public static void main(String [] args)
 	{
@@ -6,6 +7,8 @@ class App {
 		System.out.println(p.toString());
 	}
 }
+
+package org.app.point;
 
 public class Point {
 	public int x, y;
