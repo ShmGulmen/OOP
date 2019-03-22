@@ -1,0 +1,38 @@
+public class BallShape {
+	public int width, height;
+	
+	public BallShape(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	
+	public void displaySpace(int start, int end)
+	{
+		for (int i = start; i < end; ++i)
+			System.out.print(" ");
+	}
+	public void run()
+	{
+		int count = 0;
+		boolean flag = true;
+		
+		for (int i = 1; i <= height; ++i) {
+			System.out.print("|");
+			displaySpace(1, count + 1);
+			System.out.print("*");
+			displaySpace(count + 1, width);
+			
+			if (count == 0)
+				flag = true;
+			else if (count == width - 1)
+				flag = false;
+			
+			if (flag)
+				++count;
+			else 
+				--count;
+			System.out.println("|");
+		}
+	}
+}
