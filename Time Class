@@ -1,5 +1,4 @@
-import java.util.Calendar;
-
+package org.app;
 class App {
 	public static void main(String [] args)
 	{
@@ -12,6 +11,9 @@ class App {
 		System.out.println(time.toLongTimeString());
 	}
 }
+package org.app.time;
+
+import java.util.Calendar;
 
 public class Time {
 	private int m_hour, m_minute, m_second, m_millisecond;
