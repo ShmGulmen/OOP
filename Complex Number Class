@@ -1,0 +1,117 @@
+public class Complex {
+	
+	public double re, im;
+	
+	public Complex()
+	{}
+	public Complex(double real)
+	{
+		re = real;
+	}
+	public Complex(double real, double imag)
+	{
+		re = real;
+		im = imag;
+	}
+	public String toString()
+	{
+		return String.format("|%f + %f| = %f", re, im, getNorm());
+	}
+	public double getNorm()
+	{
+		return Math.sqrt(re * re + im * im);
+	}
+	//TOPLAMA
+	public static Complex add(double re1, double re2, double im1, double im2)
+	{
+		return new Complex(re1 + re2, im1 + im2);
+	}
+	public static Complex add(double val, Complex z)
+	{
+		return add(val, 0 , z.re, z.im);
+	}
+	public Complex add(double val)
+	{
+		return add(re, im, val, 0);
+	}
+	public Complex add(Complex z)
+	{
+		return add(re, im, z.re, z.im);
+	}
+	public Complex add(double real, double imag)
+	{
+		return add(real, imag, re, im);
+	}
+	//ÇIKARMA
+	public static Complex sub(double re1, double re2, double im1, double im2)
+	{
+		return add(re1, -re2, im1, -im2);
+	}
+	public static Complex sub(double val, Complex z)
+	{
+		return sub(val, 0, z.re, z.im);
+	}
+	public Complex sub(double val)
+	{
+		return sub(re, im, val, 0);
+	}
+	public Complex sub(Complex z)
+	{
+		return sub(re, im, z.re, z.im);
+	}
+	public Complex sub(double real, double imag)
+	{
+		return sub(re, im, real, imag);
+	}
+	//ÇARPMA
+	public static Complex mul(double re1, double re2, double im1, double im2)
+	{
+		return new Complex(re1 * re2 - im1 * im2, re1 * im2 + im1 * re2);
+	}
+	public static Complex mul(double val, Complex z)
+	{
+		return mul(val, 0, z.re, z.im);
+	}
+	public Complex mul(double val)
+	{
+		return mul(re, im, val, 0);
+	}
+	public Complex mul(Complex z)
+	{
+		return mul(re, im, z.re, z.im);
+	}
+	public Complex mul(double real, double imag)
+	{
+		return mul(real, imag, re, im);
+	}
+	//BÖLME
+	public static Complex div(double re1, double re2, double im1, double im2)
+	{
+		double norm = Math.sqrt(re2 * re2 + im2 * im2);
+		Complex result = mul(re1, im1, re2, -im2);
+		
+		result.re /= norm;
+		result.im /= norm;
+		
+		return result;
+	}
+  
+	public Complex getConjugate() {return new Complex(re, -im);}
+  
+	public static Complex div(double val, Complex z)
+	{
+		return div(val, 0, z.re, z.im);
+	}
+	public Complex div(double val)
+	{
+		return div(val, 0, re, im);
+	}
+	public Complex div(Complex z)
+	{
+		return div(re, im, z.re, z.im);
+	}
+	public Complex div(double real, double imag)
+	{
+		return div(real, imag, re, im);
+	}
+}
