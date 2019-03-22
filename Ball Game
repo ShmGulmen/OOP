@@ -1,3 +1,19 @@
+class App {
+	public static void main(String [] args)
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		System.out.println("Width?");
+		int width = Integer.parseInt(kb.nextLine());
+
+		System.out.println("Height?");
+		int height = Integer.parseInt(kb.nextLine());
+
+		BallShape bs = new BallShape(width, height);
+
+		bs.run();
+	}
+}
+
 public class BallShape {
 	public int width, height;
 	
