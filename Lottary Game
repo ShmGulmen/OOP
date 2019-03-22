@@ -1,3 +1,5 @@
+package org.app.lottary;
+
 public class Lottary {
 	public java.util.Random random;
 	
